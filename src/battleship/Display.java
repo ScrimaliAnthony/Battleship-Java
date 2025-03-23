@@ -1,6 +1,6 @@
 package battleship;
 
-public class Display {
+class Display {
 
     static String board(int row, int col, char[][] board) {
         StringBuilder boardBuilder = new StringBuilder();
@@ -21,5 +21,9 @@ public class Display {
         }
 
         return boardBuilder.toString();
+    }
+
+    static String placeShip() {
+        return "Enter the coordinates of the ship:";
     }
 }
