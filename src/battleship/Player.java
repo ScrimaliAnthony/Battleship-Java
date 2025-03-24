@@ -31,6 +31,13 @@ public class Player {
             lengthOfShip(colPosition);
         } else if(colPosition[0] == colPosition[1]) {
             lengthOfShip(rowPosition);
+        } else {
+            System.out.println("Error");
+            System.exit(1);
+        }
+        if(rowPosition[0] > 10 || rowPosition[1] > 10 || colPosition[0] > 10 || colPosition[1] > 10 || rowPosition[0] < 10 || rowPosition[1] < 10 || colPosition[0] < 10 || colPosition[1] < 10) {
+            System.out.println("Error");
+            System.exit(1);
         }
     }
 
