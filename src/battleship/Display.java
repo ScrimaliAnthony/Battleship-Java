@@ -26,4 +26,8 @@ class Display {
     static String placeShip() {
         return "Enter the coordinates of the ship:";
     }
+
+    static String lengthOfShip(int length) {
+        return "Length: " + length;
+    }
 }

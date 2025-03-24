@@ -18,26 +18,6 @@ class GameBoard {
         }
     }
 
-    void convertInputToCoordinates(String shipPositions) {
-        String[] shipPosition = shipPositions.split(" ");
-        int[] rowPosition = new int[2];
-        int[] colPosition = new int[2];
-
-        int i = 0;
-        do {
-            int letter = shipPosition[i].charAt(0);
-            rowPosition[i] = letter - 'A';
-            i++;
-        } while(i < 2);
-
-        i = 0;
-        do {
-            int number = shipPosition[i].charAt(1);
-            colPosition[i] = number - '0' - 1;
-            i++;
-        } while(i < 2);
-    }
-
     char[][] getBoard() {
         return bord;
     }
