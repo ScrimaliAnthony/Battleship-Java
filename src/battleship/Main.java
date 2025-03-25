@@ -14,9 +14,9 @@ public class Main {
         System.out.println(Display.placeShip());
         String shipPositions = sc.nextLine();
 
-        player1.convertInputToCoordinates(shipPositions);
+        player1.createShip(shipPositions);
         System.out.println(Display.lengthOfShip(player1.getLength()));
-
+        System.out.println("Parts: " + player1.getParts());
         sc.close();
     }
 }
