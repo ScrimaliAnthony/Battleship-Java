@@ -1,29 +1,43 @@
-package battleship;
+package battleship.model;
 
-public class Player {
+class Ship {
 
     private int length = 0;
     private String parts = "";
+    private final int maxLength;
 
-    void createShip(String shipPositions) {
+    private final int startRowIndex;
+    private final int startColIndex;
+    private final int endRowIndex;
+    private final int endColIndex;
+
+    private final int[] dynamicIndex;
+    private final int[] staticIndex;
+
+    public Ship(String shipPositions, int maxLength) {
+        this.maxLength = maxLength;
+
         String[] coordinates = convertInputToCoordinates(shipPositions);
 
         String[] startCoordinates = separateCoordinates(coordinates[0]);
         String[] endCoordinates = separateCoordinates(coordinates[1]);
 
-        int startRowIndex = convertCoordinatesToIndex(startCoordinates[0], 'A');
-        int startColIndex = convertCoordinatesToIndex(startCoordinates[1], '1');
-        int endRowIndex = convertCoordinatesToIndex(endCoordinates[0], 'A');
-        int endColIndex = convertCoordinatesToIndex(endCoordinates[1], '1');
+        startRowIndex = convertCoordinatesToIndex(startCoordinates[0], 'A');
+        startColIndex = convertCoordinatesToIndex(startCoordinates[1], '1');
+        endRowIndex = convertCoordinatesToIndex(endCoordinates[0], 'A');
+        endColIndex = convertCoordinatesToIndex(endCoordinates[1], '1');
 
         checkIndex(startRowIndex, startColIndex, endRowIndex, endColIndex);
 
-        int[] dynamicIndex = checkDynamicIndex(startRowIndex, startColIndex, endRowIndex, endColIndex);
-        int[] staticIndex = checkStaticIndex(startRowIndex, startColIndex, endRowIndex, endColIndex);
+        dynamicIndex = checkDynamicIndex(startRowIndex, startColIndex, endRowIndex, endColIndex);
+        staticIndex = checkStaticIndex(startRowIndex, startColIndex, endRowIndex, endColIndex);
+
         boolean isStaticRow = isStaticRow(startRowIndex, endRowIndex);
         boolean isOrder = isOrder(dynamicIndex);
 
         lengthOfShip(dynamicIndex);
+
+        checkLengthOfShip();
 
         partsOfShip(dynamicIndex, staticIndex, isStaticRow, isOrder);
     }
@@ -47,11 +61,11 @@ public class Player {
 
     private void checkIndex(int startRowIndex, int startColIndex, int endRowIndex, int endColIndex) {
         if(startRowIndex != endRowIndex && startColIndex != endColIndex) {
-            System.out.println("Error");
+            System.out.println("Error: Your ship must be aligned either horizontally or vertically.");
             System.exit(0);
         }
         if(startRowIndex < 0 || startRowIndex > 9 || startColIndex < 0 || startColIndex > 9 || endRowIndex < 0 || endRowIndex > 9 || endColIndex < 0 || endColIndex > 9) {
-            System.out.println("Error");
+            System.out.println("Error: Your ship must be placed within the board (from A1 to J10 inclusive).");
             System.exit(0);
         }
     }
@@ -92,6 +106,13 @@ public class Player {
         length = Math.abs((position[0] - position[1])) +1;
     }
 
+    private void checkLengthOfShip() {
+        if(length != maxLength) {
+            System.out.println("Error: The length of the ... need to be ... Try again:");
+            System.exit(0);
+        }
+    }
+
     private void partsOfShip(int[] dynamicIndex, int[] staticIndex, boolean isStaticRow, boolean isOrder) {
         StringBuilder partsOfShipBuilder = new StringBuilder(30);
 
@@ -121,5 +142,33 @@ public class Player {
 
     String getParts() {
         return parts;
+    }
+
+    int getMaxLength() {
+        return maxLength;
+    }
+
+    int getStartRowIndex() {
+        return startRowIndex;
+    }
+
+    int getStartColIndex() {
+        return startColIndex;
+    }
+
+    int getEndRowIndex() {
+        return endRowIndex;
+    }
+
+    int getEndColIndex() {
+        return endColIndex;
+    }
+
+    int[] getDynamicIndex() {
+        return dynamicIndex;
+    }
+
+    int[] getStaticIndex() {
+        return staticIndex;
     }
 }

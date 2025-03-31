@@ -1,8 +1,8 @@
-package battleship;
+package battleship.ui;
 
-class Display {
+public class Display {
 
-    static String board(int row, int col, char[][] board) {
+    public static String board(int row, int col, char[][] board) {
         StringBuilder boardBuilder = new StringBuilder();
         boardBuilder.append(" ");
 
@@ -23,11 +23,15 @@ class Display {
         return boardBuilder.toString();
     }
 
-    static String placeShip() {
+    public static String placeShip() {
         return "Enter the coordinates of the ship:";
     }
 
-    static String lengthOfShip(int length) {
+    public static String lengthOfShip(int length) {
         return "Length: " + length;
+    }
+
+    public static String partsOfShip(String parts) {
+        return "Parts: " + parts;
     }
 }

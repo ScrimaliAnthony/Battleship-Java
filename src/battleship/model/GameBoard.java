@@ -1,12 +1,12 @@
-package battleship;
+package battleship.model;
 
 class GameBoard {
 
-    private char[][] bord;
-    private int row;
-    private int col;
+    final private char[][] bord;
+    final private int row;
+    final private int col;
 
-    GameBoard(int row, int col) {
+    public GameBoard(int row, int col) {
         this.row = row;
         this.col = col;
 
