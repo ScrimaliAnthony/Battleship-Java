@@ -18,6 +18,15 @@ class GameBoard {
         }
     }
 
+    public void placeShipOnBoard(Ship ship) {
+        int[] row = ship.getRowIndex();
+        int[] col = ship.getColIndex();
+
+        for(int i = 0; i < ship.getLength(); i++) {
+            bord[row[i]][col[i]] = 'O';
+        }
+    }
+
     char[][] getBoard() {
         return bord;
     }

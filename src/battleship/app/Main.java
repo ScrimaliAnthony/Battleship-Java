@@ -21,6 +21,10 @@ public class Main {
         System.out.println(player1.getLengthOfShipAsString(player1.getAircraftCarrier()));
         System.out.println(player1.getPartsOfShipAsString(player1.getAircraftCarrier()));
 
+        player1.placeShip(player1.getAircraftCarrier());
+
+        System.out.println(player1.getBoardAsString());
+
         sc.close();
     }
 }

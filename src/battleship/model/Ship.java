@@ -2,9 +2,10 @@ package battleship.model;
 
 class Ship {
 
+    private final int maxLength;
+
     private int length = 0;
     private String parts = "";
-    private final int maxLength;
 
     private final int startRowIndex;
     private final int startColIndex;
@@ -13,6 +14,12 @@ class Ship {
 
     private final int[] dynamicIndex;
     private final int[] staticIndex;
+
+    private final boolean isStaticRow;
+    private final boolean isOrder;
+
+    private final int[] rowIndex;
+    private final int[] colIndex;
 
     public Ship(String shipPositions, int maxLength) {
         this.maxLength = maxLength;
@@ -32,14 +39,17 @@ class Ship {
         dynamicIndex = checkDynamicIndex(startRowIndex, startColIndex, endRowIndex, endColIndex);
         staticIndex = checkStaticIndex(startRowIndex, startColIndex, endRowIndex, endColIndex);
 
-        boolean isStaticRow = isStaticRow(startRowIndex, endRowIndex);
-        boolean isOrder = isOrder(dynamicIndex);
+        isStaticRow = isStaticRow(startRowIndex, endRowIndex);
+        isOrder = isOrder(dynamicIndex);
 
         lengthOfShip(dynamicIndex);
 
         checkLengthOfShip();
 
         partsOfShip(dynamicIndex, staticIndex, isStaticRow, isOrder);
+
+        rowIndex = rowIndex();
+        colIndex = colIndex();
     }
 
     private String[] convertInputToCoordinates(String shipPositions) {
@@ -130,10 +140,58 @@ class Ship {
                     partsOfShipBuilder.append((char) (dynamicIndex[0] + 'A' - i)).append(staticIndex[0] + 1).append(" ");
                 }
             }
-
         }
-
         parts = partsOfShipBuilder.toString();
+    }
+
+    private int[] rowIndex() {
+        int[] rowIndex = new int[maxLength];
+        int i = 0;
+
+        if(isStaticRow) {
+            while(i < maxLength) {
+                rowIndex[i] = startRowIndex;
+                i++;
+            }
+        } else {
+            if(isOrder) {
+                for(int j = startRowIndex; j <= endRowIndex; j++) {
+                    rowIndex[i] = j;
+                    i++;
+                }
+            } else {
+                for(int j = endRowIndex; j <= startRowIndex; j++) {
+                    rowIndex[i] = j;
+                    i++;
+                }
+            }
+        }
+        return rowIndex;
+    }
+
+    private int[] colIndex() {
+        int[] colIndex = new int[maxLength];
+        int i = 0;
+
+        if(!isStaticRow) {
+            while(i < maxLength) {
+                colIndex[i] = startColIndex;
+                i++;
+            }
+        } else {
+            if(isOrder) {
+                for(int j = startColIndex; j <= endColIndex; j++) {
+                    colIndex[i] = j;
+                    i++;
+                }
+            } else {
+                for(int j = endColIndex; j <= startColIndex; j++) {
+                    colIndex[i] = j;
+                    i++;
+                }
+            }
+        }
+        return colIndex;
     }
 
     int getLength() {
@@ -170,5 +228,21 @@ class Ship {
 
     int[] getStaticIndex() {
         return staticIndex;
+    }
+
+    boolean getIsStaticRow() {
+        return isStaticRow;
+    }
+
+    boolean getIsOrder() {
+        return isOrder;
+    }
+
+    int[] getRowIndex() {
+        return rowIndex;
+    }
+
+    int[] getColIndex() {
+        return colIndex;
     }
 }

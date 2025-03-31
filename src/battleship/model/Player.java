@@ -18,6 +18,10 @@ public class Player {
         aircraftCarrier = new Ship(shipPosition, maxLength);
     }
 
+    public void placeShip(Ship ship) {
+        gameBoard.placeShipOnBoard(ship);
+    }
+
     public String getBoardAsString() {
         return Display.board(gameBoard.getRow(), gameBoard.getCol(), gameBoard.getBoard());
     }
