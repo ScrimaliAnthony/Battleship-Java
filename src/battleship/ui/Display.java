@@ -23,8 +23,9 @@ public class Display {
         return boardBuilder.toString();
     }
 
-    public static String placeShip() {
-        return "Enter the coordinates of the ship:";
+    public static String placeShip(int i) {
+        String[] names = {"Aircraft Carrier (5 cells)", "Battleship (4 cells)", "Submarine (3 cells)", "Cruiser (3 cells)", "Destroyer (2 cells)"};
+        return "Enter the coordinates of the " + names[i] + ":";
     }
 
     public static String lengthOfShip(int length) {

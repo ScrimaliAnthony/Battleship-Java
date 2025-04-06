@@ -13,17 +13,17 @@ public class Main {
         Player player1 = new Player();
         System.out.println(player1.getBoardAsString());
 
+        for(int i = 0; i < 5; i++) {
+            System.out.println(Display.placeShip(i));
+            String shipPositions = sc.nextLine();
 
-        System.out.println(Display.placeShip());
-        String shipPositions = sc.nextLine();
+            player1.createShips(shipPositions, i);
+            player1.placeShip(player1.getShip(i));
 
-        player1.createShips(shipPositions, 5);
-        System.out.println(player1.getLengthOfShipAsString(player1.getAircraftCarrier()));
-        System.out.println(player1.getPartsOfShipAsString(player1.getAircraftCarrier()));
-
-        player1.placeShip(player1.getAircraftCarrier());
-
-        System.out.println(player1.getBoardAsString());
+            System.out.println(player1.getLengthOfShipAsString(player1.getShip(i)));
+            System.out.println(player1.getPartsOfShipAsString(player1.getShip(i)));
+            System.out.println(player1.getBoardAsString());
+        }
 
         sc.close();
     }

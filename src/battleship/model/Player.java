@@ -4,18 +4,22 @@ import battleship.ui.Display;
 
 public class Player {
     private GameBoard gameBoard;
-    private Ship aircraftCarrier;
+
+    private Ship[] ships = new Ship[5];
 
     public Player() {
         createGameBoard();
     }
 
-    private void createGameBoard() {
-        gameBoard = new GameBoard(10, 10);
+    public void createShips(String shipPosition, int i) {
+        int[] shipSize = { 5, 4, 3, 3, 2 };
+        String[] shipsNames = { "aircraftCarrier", "battleShip", "submarine", "cruiser", "destroyer" };
+
+        ships[i] = new Ship(shipPosition, shipSize[i], shipsNames[i]);
     }
 
-    public void createShips(String shipPosition, int maxLength) {
-        aircraftCarrier = new Ship(shipPosition, maxLength);
+    private void createGameBoard() {
+        gameBoard = new GameBoard(10, 10);
     }
 
     public void placeShip(Ship ship) {
@@ -38,7 +42,7 @@ public class Player {
         return gameBoard;
     }
 
-    public Ship getAircraftCarrier() {
-        return aircraftCarrier;
+    public Ship getShip(int i) {
+        return ships[i];
     }
 }

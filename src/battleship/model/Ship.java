@@ -3,6 +3,7 @@ package battleship.model;
 class Ship {
 
     private final int maxLength;
+    private final String name;
 
     private int length = 0;
     private String parts = "";
@@ -21,8 +22,9 @@ class Ship {
     private final int[] rowIndex;
     private final int[] colIndex;
 
-    public Ship(String shipPositions, int maxLength) {
+    public Ship(String shipPositions, int maxLength, String name) {
         this.maxLength = maxLength;
+        this.name = name;
 
         String[] coordinates = convertInputToCoordinates(shipPositions);
 
@@ -204,6 +206,10 @@ class Ship {
 
     int getMaxLength() {
         return maxLength;
+    }
+
+    String getName() {
+        return name;
     }
 
     int getStartRowIndex() {
