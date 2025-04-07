@@ -1,6 +1,7 @@
 package battleship.model;
 
 import battleship.exceptions.ShipOverlapException;
+import battleship.exceptions.TooCloseToAnotherShipException;
 
 class GameBoard {
 
@@ -20,17 +21,35 @@ class GameBoard {
         }
     }
 
-    public void placeShipOnBoard(Ship ship) throws ShipOverlapException {
+    public void placeShipOnBoard(Ship ship) throws ShipOverlapException, TooCloseToAnotherShipException {
         int[] row = ship.getRowIndex();
         int[] col = ship.getColIndex();
 
         for(int i = 0; i < ship.getLength(); i++) {
             if(bord[row[i]][col[i]] == 'O') {
                 throw new ShipOverlapException("Error: You can't place a ship on another one. Try again:");
-            } else {
-                bord[row[i]][col[i]] = 'O';
+            }
+            if(isTooClose(row[i], col[i])) {
+                throw new TooCloseToAnotherShipException("Error! You placed it too close to another one. Try again:");
             }
         }
+
+        for(int i = 0; i < ship.getLength(); i++) {
+            bord[row[i]][col[i]] = 'O';
+        }
+    }
+
+    private boolean isTooClose(int row, int col) {
+        for (int i = row - 1; i <= row + 1; i++) {
+            for (int j = col - 1; j <= col + 1; j++) {
+                if (i >= 0 && i < this.row && j >= 0 && j < this.col) {
+                    if (bord[i][j] == 'O') {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     char[][] getBoard() {

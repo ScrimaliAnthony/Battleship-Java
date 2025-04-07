@@ -1,9 +1,6 @@
 package battleship.model;
 
-import battleship.exceptions.InvalidShipLengthException;
-import battleship.exceptions.NotAlignedShipException;
-import battleship.exceptions.NotInsideTheBoardException;
-import battleship.exceptions.ShipOverlapException;
+import battleship.exceptions.*;
 import battleship.ui.Display;
 
 public class Player {
@@ -26,7 +23,7 @@ public class Player {
         gameBoard = new GameBoard(10, 10);
     }
 
-    public void placeShip(Ship ship) throws ShipOverlapException {
+    public void placeShip(Ship ship) throws ShipOverlapException, TooCloseToAnotherShipException {
         gameBoard.placeShipOnBoard(ship);
     }
 

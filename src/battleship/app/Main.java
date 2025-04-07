@@ -1,9 +1,6 @@
 package battleship.app;
 
-import battleship.exceptions.InvalidShipLengthException;
-import battleship.exceptions.NotAlignedShipException;
-import battleship.exceptions.NotInsideTheBoardException;
-import battleship.exceptions.ShipOverlapException;
+import battleship.exceptions.*;
 import battleship.model.Player;
 import battleship.ui.Display;
 
@@ -33,7 +30,7 @@ public class Main {
 
                     valid = true;
                 } catch (InvalidShipLengthException | NotAlignedShipException | NotInsideTheBoardException |
-                         ShipOverlapException e) {
+                         ShipOverlapException | TooCloseToAnotherShipException e) {
                     System.out.println(e.getMessage());
                 }
             }
