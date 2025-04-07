@@ -1,5 +1,7 @@
 package battleship.model;
 
+import battleship.exceptions.ShipOverlapException;
+
 class GameBoard {
 
     final private char[][] bord;
@@ -18,12 +20,16 @@ class GameBoard {
         }
     }
 
-    public void placeShipOnBoard(Ship ship) {
+    public void placeShipOnBoard(Ship ship) throws ShipOverlapException {
         int[] row = ship.getRowIndex();
         int[] col = ship.getColIndex();
 
         for(int i = 0; i < ship.getLength(); i++) {
-            bord[row[i]][col[i]] = 'O';
+            if(bord[row[i]][col[i]] == 'O') {
+                throw new ShipOverlapException("Error: You can't place a ship on another one. Try again:");
+            } else {
+                bord[row[i]][col[i]] = 'O';
+            }
         }
     }
 

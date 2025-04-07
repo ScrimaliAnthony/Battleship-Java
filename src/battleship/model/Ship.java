@@ -1,5 +1,9 @@
 package battleship.model;
 
+import battleship.exceptions.InvalidShipLengthException;
+import battleship.exceptions.NotAlignedShipException;
+import battleship.exceptions.NotInsideTheBoardException;
+
 class Ship {
 
     private final int maxLength;
@@ -22,7 +26,7 @@ class Ship {
     private final int[] rowIndex;
     private final int[] colIndex;
 
-    public Ship(String shipPositions, int maxLength, String name) {
+    public Ship(String shipPositions, int maxLength, String name) throws InvalidShipLengthException, NotAlignedShipException, NotInsideTheBoardException {
         this.maxLength = maxLength;
         this.name = name;
 
@@ -71,14 +75,12 @@ class Ship {
         }
     }
 
-    private void checkIndex(int startRowIndex, int startColIndex, int endRowIndex, int endColIndex) {
+    private void checkIndex(int startRowIndex, int startColIndex, int endRowIndex, int endColIndex) throws NotAlignedShipException, NotInsideTheBoardException {
         if(startRowIndex != endRowIndex && startColIndex != endColIndex) {
-            System.out.println("Error: Your ship must be aligned either horizontally or vertically.");
-            System.exit(0);
+           throw new NotAlignedShipException("Error: Your ship must be aligned either horizontally or vertically. Try again:");
         }
         if(startRowIndex < 0 || startRowIndex > 9 || startColIndex < 0 || startColIndex > 9 || endRowIndex < 0 || endRowIndex > 9 || endColIndex < 0 || endColIndex > 9) {
-            System.out.println("Error: Your ship must be placed within the board (from A1 to J10 inclusive).");
-            System.exit(0);
+            throw new NotInsideTheBoardException("Error: Your ship must be placed within the board (from A1 to J10 inclusive). Try again:");
         }
     }
 
@@ -118,10 +120,9 @@ class Ship {
         length = Math.abs((position[0] - position[1])) +1;
     }
 
-    private void checkLengthOfShip() {
+    private void checkLengthOfShip() throws InvalidShipLengthException {
         if(length != maxLength) {
-            System.out.println("Error: The length of the ... need to be ... Try again:");
-            System.exit(0);
+            throw new InvalidShipLengthException("Error: The length of the "+ this.name + " need to be " + this.maxLength + " Try again:");
         }
     }
 
@@ -202,46 +203,6 @@ class Ship {
 
     String getParts() {
         return parts;
-    }
-
-    int getMaxLength() {
-        return maxLength;
-    }
-
-    String getName() {
-        return name;
-    }
-
-    int getStartRowIndex() {
-        return startRowIndex;
-    }
-
-    int getStartColIndex() {
-        return startColIndex;
-    }
-
-    int getEndRowIndex() {
-        return endRowIndex;
-    }
-
-    int getEndColIndex() {
-        return endColIndex;
-    }
-
-    int[] getDynamicIndex() {
-        return dynamicIndex;
-    }
-
-    int[] getStaticIndex() {
-        return staticIndex;
-    }
-
-    boolean getIsStaticRow() {
-        return isStaticRow;
-    }
-
-    boolean getIsOrder() {
-        return isOrder;
     }
 
     int[] getRowIndex() {

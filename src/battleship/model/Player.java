@@ -1,5 +1,9 @@
 package battleship.model;
 
+import battleship.exceptions.InvalidShipLengthException;
+import battleship.exceptions.NotAlignedShipException;
+import battleship.exceptions.NotInsideTheBoardException;
+import battleship.exceptions.ShipOverlapException;
 import battleship.ui.Display;
 
 public class Player {
@@ -11,7 +15,7 @@ public class Player {
         createGameBoard();
     }
 
-    public void createShips(String shipPosition, int i) {
+    public void createShips(String shipPosition, int i) throws InvalidShipLengthException, NotAlignedShipException, NotInsideTheBoardException {
         int[] shipSize = { 5, 4, 3, 3, 2 };
         String[] shipsNames = { "aircraftCarrier", "battleShip", "submarine", "cruiser", "destroyer" };
 
@@ -22,7 +26,7 @@ public class Player {
         gameBoard = new GameBoard(10, 10);
     }
 
-    public void placeShip(Ship ship) {
+    public void placeShip(Ship ship) throws ShipOverlapException {
         gameBoard.placeShipOnBoard(ship);
     }
 

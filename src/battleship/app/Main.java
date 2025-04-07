@@ -1,5 +1,9 @@
 package battleship.app;
 
+import battleship.exceptions.InvalidShipLengthException;
+import battleship.exceptions.NotAlignedShipException;
+import battleship.exceptions.NotInsideTheBoardException;
+import battleship.exceptions.ShipOverlapException;
 import battleship.model.Player;
 import battleship.ui.Display;
 
@@ -14,15 +18,25 @@ public class Main {
         System.out.println(player1.getBoardAsString());
 
         for(int i = 0; i < 5; i++) {
+            boolean valid = false;
             System.out.println(Display.placeShip(i));
-            String shipPositions = sc.nextLine();
 
-            player1.createShips(shipPositions, i);
-            player1.placeShip(player1.getShip(i));
+            while(!valid) {
+                String shipPositions = sc.nextLine();
+                try {
+                    player1.createShips(shipPositions, i);
+                    player1.placeShip(player1.getShip(i));
 
-            System.out.println(player1.getLengthOfShipAsString(player1.getShip(i)));
-            System.out.println(player1.getPartsOfShipAsString(player1.getShip(i)));
-            System.out.println(player1.getBoardAsString());
+                    System.out.println(player1.getLengthOfShipAsString(player1.getShip(i)));
+                    System.out.println(player1.getPartsOfShipAsString(player1.getShip(i)));
+                    System.out.println(player1.getBoardAsString());
+
+                    valid = true;
+                } catch (InvalidShipLengthException | NotAlignedShipException | NotInsideTheBoardException |
+                         ShipOverlapException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
         }
 
         sc.close();
