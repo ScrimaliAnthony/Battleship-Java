@@ -12,15 +12,19 @@ public class Player {
         createGameBoard();
     }
 
-    public void createShips(String shipPosition, int i) throws InvalidShipLengthException, NotAlignedShipException, NotInsideTheBoardException {
-        int[] shipSize = { 5, 4, 3, 3, 2 };
-        String[] shipsNames = { "aircraftCarrier", "battleShip", "submarine", "cruiser", "destroyer" };
-
-        ships[i] = new Ship(shipPosition, shipSize[i], shipsNames[i]);
-    }
-
     private void createGameBoard() {
         gameBoard = new GameBoard(10, 10);
+    }
+
+    public void createFleet(String shipPosition, int i)
+            throws NotAlignedShipException, NotInsideTheBoardException, InvalidShipLengthException,
+            TooCloseToAnotherShipException, ShipOverlapException {
+
+        int[] shipMaxLength = { 5, 4, 3, 3, 2 };
+        String[] shipsNames = { "aircraftCarrier", "battleShip", "submarine", "cruiser", "destroyer" };
+
+        ships[i] = ShipFactory.createShip(shipPosition, shipMaxLength[i], shipsNames[i]);
+        placeShip(ships[i]);
     }
 
     public void placeShip(Ship ship) throws ShipOverlapException, TooCloseToAnotherShipException {

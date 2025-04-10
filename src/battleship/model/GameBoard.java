@@ -9,7 +9,7 @@ class GameBoard {
     final private int row;
     final private int col;
 
-    public GameBoard(int row, int col) {
+    GameBoard(int row, int col) {
         this.row = row;
         this.col = col;
 
@@ -21,7 +21,7 @@ class GameBoard {
         }
     }
 
-    public void placeShipOnBoard(Ship ship) throws ShipOverlapException, TooCloseToAnotherShipException {
+    void placeShipOnBoard(Ship ship) throws ShipOverlapException, TooCloseToAnotherShipException {
         int[] row = ship.getRowIndex();
         int[] col = ship.getColIndex();
 
