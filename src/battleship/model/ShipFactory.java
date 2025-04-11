@@ -1,8 +1,6 @@
 package battleship.model;
 
-import battleship.exceptions.InvalidShipLengthException;
-import battleship.exceptions.NotAlignedShipException;
-import battleship.exceptions.NotInsideTheBoardException;
+import battleship.exceptions.*;
 import battleship.utils.Converter;
 import battleship.utils.Validators;
 
@@ -12,8 +10,10 @@ public class ShipFactory {
 
     private ShipFactory() {}
 
-    public static Ship createShip(String shipPosition, int shipMaxLength, String shipName)
-            throws NotAlignedShipException, NotInsideTheBoardException, InvalidShipLengthException {
+    public static Ship createShip(String shipPosition, int shipMaxLength, String shipName, char[][] gameBoard,
+            int boardRow, int boardCol)
+            throws NotAlignedShipException, NotInsideTheBoardException, InvalidShipLengthException, ShipOverlapException,
+            TooCloseToAnotherShipException {
 
         int[] indexes = Converter.shipConvert(shipPosition);
 
@@ -26,10 +26,10 @@ public class ShipFactory {
         int length = lengthOfShip(dynamicIndex);
         String partsOfShip = partsOfShip(dynamicIndex, staticIndex, isStaticRow, isOrder, length);
 
-        Validators.ShipValidate(indexes, shipMaxLength, length, shipName);
-
         int[] rowIndex = rowIndex(length, isStaticRow, isOrder, indexes[0], indexes[2]);
         int[] colIndex = colIndex(length, isStaticRow, isOrder, indexes[1], indexes[3]);
+
+        Validators.ShipValidate(indexes, shipMaxLength, length, shipName, gameBoard, rowIndex, colIndex, boardRow, boardCol);
 
         return new Ship(length, shipName, partsOfShip, rowIndex, colIndex);
     }

@@ -23,7 +23,7 @@ public class Player {
         int[] shipMaxLength = { 5, 4, 3, 3, 2 };
         String[] shipsNames = { "aircraftCarrier", "battleShip", "submarine", "cruiser", "destroyer" };
 
-        ships[i] = ShipFactory.createShip(shipPosition, shipMaxLength[i], shipsNames[i]);
+        ships[i] = ShipFactory.createShip(shipPosition, shipMaxLength[i], shipsNames[i], getBoard(), getRow(), getCol());
         placeShip(ships[i]);
     }
 
@@ -49,5 +49,17 @@ public class Player {
 
     public Ship getShip(int i) {
         return ships[i];
+    }
+
+    public char[][] getBoard() {
+        return this.gameBoard.getBoard();
+    }
+
+    public int getRow() {
+        return this.gameBoard.getRow();
+    }
+
+    public int getCol() {
+        return this.gameBoard.getCol();
     }
 }

@@ -32,8 +32,6 @@ public class Main {
             }
         }
 
-        System.out.println("Création des bateaux terminé");
-
         sc.close();
     }
 }
