@@ -5,7 +5,7 @@ import battleship.exceptions.TooCloseToAnotherShipException;
 
 class GameBoard {
 
-    final private char[][] bord;
+    final private char[][] board;
     final private int row;
     final private int col;
 
@@ -13,10 +13,10 @@ class GameBoard {
         this.row = row;
         this.col = col;
 
-        bord = new char[row][col];
+        board = new char[row][col];
         for(int i = 0; i < row; i++) {
             for(int j = 0; j < col; j++) {
-                bord[i][j] = '~';
+                board[i][j] = '~';
             }
         }
     }
@@ -26,12 +26,12 @@ class GameBoard {
         int[] col = ship.getColIndex();
 
         for(int i = 0; i < ship.getLength(); i++) {
-            bord[row[i]][col[i]] = 'O';
+            board[row[i]][col[i]] = 'O';
         }
     }
 
     char[][] getBoard() {
-        return bord;
+        return board;
     }
 
     int getRow() {
