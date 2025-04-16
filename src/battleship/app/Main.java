@@ -32,6 +32,25 @@ public class Main {
             }
         }
 
+        System.out.println(Display.gameStart());
+        System.out.println(player1.getBoardAsString());
+
+        {
+            boolean valid = false;
+            while(!valid) {
+                System.out.println(Display.takeAShot());
+                String fireShot = sc.nextLine();
+                try {
+                    boolean isFireOnShip = player1.fire(fireShot);
+                    System.out.println(player1.getBoardAsString());
+                    System.out.println(Display.isFireOnShip(isFireOnShip));
+                    valid = true;
+                } catch (NotInsideTheBoardException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        }
+
         sc.close();
     }
 }

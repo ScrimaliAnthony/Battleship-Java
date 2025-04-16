@@ -9,8 +9,8 @@ public class Converter {
 
         String[] coordinates = convertShipInputToCoordinates(input);
 
-        String[] startCoordinates = separateShipCoordinates(coordinates[0]);
-        String[] endCoordinates = separateShipCoordinates(coordinates[1]);
+        String[] startCoordinates = separateCoordinates(coordinates[0]);
+        String[] endCoordinates = separateCoordinates(coordinates[1]);
 
         index[0] = convertCoordinatesToIndex(startCoordinates[0], 'A');
         index[1] = convertCoordinatesToIndex(startCoordinates[1], '1');
@@ -20,17 +20,27 @@ public class Converter {
         return index;
     }
 
+    public static int[] fireConvert(String input) {
+        int[] indexes = new int[2];
+        String[] coordinates = separateCoordinates(input);
+
+        indexes[0] = convertCoordinatesToIndex(coordinates[0], 'A');
+        indexes[1] = convertCoordinatesToIndex(coordinates[1], '1');
+
+        return indexes;
+    }
+
     private static String[] convertShipInputToCoordinates(String shipPositions) {
         return shipPositions.split(" ");
     }
 
-    private static String[] separateShipCoordinates(String shipPosition) {
+    private static String[] separateCoordinates(String shipPosition) {
         return shipPosition.split("(?<=\\D)(?=\\d)");
     }
 
     private static int convertCoordinatesToIndex(String coordinate, char charToAdd) {
         if(coordinate.length() > 1) {
-            return 9;
+            return Integer.parseInt(coordinate) -1;
         } else {
             char coordinateChar = coordinate.charAt(0);
             return (coordinateChar - charToAdd);

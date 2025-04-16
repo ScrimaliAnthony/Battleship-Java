@@ -27,8 +27,13 @@ public class Player {
         placeShip(ships[i]);
     }
 
-    public void placeShip(Ship ship) throws ShipOverlapException, TooCloseToAnotherShipException {
+    public void placeShip(Ship ship) {
         gameBoard.placeShipOnBoard(ship);
+    }
+
+    public boolean fire(String fireShot) throws NotInsideTheBoardException {
+        int[] fireIndex = Fire.shot(fireShot);
+        return this.gameBoard.isFireOnShip(fireIndex);
     }
 
     public String getBoardAsString() {

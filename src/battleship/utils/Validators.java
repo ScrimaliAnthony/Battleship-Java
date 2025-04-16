@@ -14,6 +14,7 @@ public class Validators {
         checkAlignment(indexes);
 
         for(int index : indexes) {
+            System.out.println(index);
             checkInsideTheBoard(index);
         }
 
@@ -21,6 +22,12 @@ public class Validators {
 
         isShipOverlap(gameBoard, rowIndex, colIndex, length);
         isTooClose(boardRow, boardCol, rowIndex, colIndex, gameBoard, length);
+    }
+
+    public static void fireValidate(int[] indexes) throws NotInsideTheBoardException {
+        for(int index : indexes) {
+            checkInsideTheBoard(index);
+        }
     }
 
     private static void checkAlignment(int[] index) throws NotAlignedShipException {
@@ -31,7 +38,7 @@ public class Validators {
 
     private static void checkInsideTheBoard(int index) throws NotInsideTheBoardException {
         if(index < 0 || index > 9) {
-            throw new NotInsideTheBoardException("Error: Your ship must be placed within the board (from A1 to J10 inclusive). Try again:");
+            throw new NotInsideTheBoardException("Error! You entered the wrong coordinates! Try again: (from A1 to J10 inclusive). Try again:");
         }
     }
 

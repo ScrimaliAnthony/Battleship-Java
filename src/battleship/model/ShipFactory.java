@@ -4,8 +4,6 @@ import battleship.exceptions.*;
 import battleship.utils.Converter;
 import battleship.utils.Validators;
 
-import java.util.Arrays;
-
 public class ShipFactory {
 
     private ShipFactory() {}

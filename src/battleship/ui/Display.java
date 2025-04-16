@@ -35,4 +35,20 @@ public class Display {
     public static String partsOfShip(String parts) {
         return "Parts: " + parts;
     }
+
+    public static String gameStart() {
+        return "The game starts!";
+    }
+
+    public static String takeAShot() {
+        return "Take a shot!";
+    }
+
+    public static String isFireOnShip(boolean isFireOnShip) {
+        if(isFireOnShip) {
+            return "You hit a ship!";
+        } else {
+            return "You missed!";
+        }
+    }
 }
