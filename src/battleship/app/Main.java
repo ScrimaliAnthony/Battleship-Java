@@ -33,7 +33,7 @@ public class Main {
         }
 
         System.out.println(Display.gameStart());
-        System.out.println(player1.getBoardAsString());
+        System.out.println(player1.getFogWarBoard());
 
         {
             boolean valid = false;
@@ -42,7 +42,7 @@ public class Main {
                 String fireShot = sc.nextLine();
                 try {
                     boolean isFireOnShip = player1.fire(fireShot);
-                    System.out.println(player1.getBoardAsString());
+                    System.out.println(player1.getFogWarBoard());
                     System.out.println(Display.isFireOnShip(isFireOnShip));
                     valid = true;
                 } catch (NotInsideTheBoardException e) {

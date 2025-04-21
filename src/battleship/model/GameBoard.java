@@ -3,6 +3,7 @@ package battleship.model;
 class GameBoard {
 
     final private char[][] board;
+    final private char[][] fogWarBoard;
     final private int row;
     final private int col;
 
@@ -11,9 +12,11 @@ class GameBoard {
         this.col = col;
 
         board = new char[row][col];
+        fogWarBoard = new char[row][col];
         for(int i = 0; i < row; i++) {
             for(int j = 0; j < col; j++) {
                 board[i][j] = '~';
+                fogWarBoard[i][j] = '~';
             }
         }
     }
@@ -33,9 +36,11 @@ class GameBoard {
 
         if(board[row][col] == 'O') {
             board[row][col] = 'X';
+            fogWarBoard[row][col] = 'X';
             return true;
         } else if(board[row][col] == '~') {
             board[row][col] = 'M';
+            fogWarBoard[row][col] = 'M';
             return false;
         }
         return false;
@@ -51,5 +56,9 @@ class GameBoard {
 
     int getCol() {
         return col;
+    }
+
+    char[][] getFogWarBoard() {
+        return fogWarBoard;
     }
 }

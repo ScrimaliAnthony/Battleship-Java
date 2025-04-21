@@ -40,6 +40,10 @@ public class Player {
         return Display.board(gameBoard.getRow(), gameBoard.getCol(), gameBoard.getBoard());
     }
 
+    public String getFogWarBoard() {
+        return Display.board(gameBoard.getRow(), gameBoard.getCol(), gameBoard.getFogWarBoard());
+    }
+
     public String getLengthOfShipAsString(Ship ship) {
         return Display.lengthOfShip(ship.getLength());
     }

@@ -37,18 +37,18 @@ public class Display {
     }
 
     public static String gameStart() {
-        return "The game starts!";
+        return "The game starts!\n";
     }
 
     public static String takeAShot() {
-        return "Take a shot!";
+        return "Take a shot!\n";
     }
 
     public static String isFireOnShip(boolean isFireOnShip) {
         if(isFireOnShip) {
-            return "You hit a ship!";
+            return "You hit a ship!\n";
         } else {
-            return "You missed!";
+            return "You missed!\n";
         }
     }
 }
