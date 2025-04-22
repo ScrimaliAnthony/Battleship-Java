@@ -51,4 +51,12 @@ public class Display {
             return "You missed!\n";
         }
     }
+
+    public static String sankShip() {
+        return "You sank a ship! Specify a new target:";
+    }
+
+    public static String win() {
+        return "You sank the last ship. You won. Congratulations!";
+    }
 }

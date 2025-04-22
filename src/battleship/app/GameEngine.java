@@ -12,7 +12,10 @@ class GameEngine {
 
     void startGame() {
         placeShip();
-        fire();
+        System.out.println(Display.gameStart());
+        while(checkGameState()) {
+            fire();
+        }
         sc.close();
     }
 
@@ -40,23 +43,34 @@ class GameEngine {
     }
 
     private void fire() {
-        System.out.println(Display.gameStart());
-        System.out.println(player1.getFogWarBoard());
+        System.out.println(player1.getFogWarBoardAsString());
 
-        {
-            boolean valid = false;
-            while(!valid) {
-                System.out.println(Display.takeAShot());
-                String fireShot = sc.nextLine();
-                try {
-                    boolean isFireOnShip = player1.fire(fireShot);
-                    System.out.println(player1.getFogWarBoard());
-                    System.out.println(Display.isFireOnShip(isFireOnShip));
-                    valid = true;
-                } catch (NotInsideTheBoardException e) {
-                    System.out.println(e.getMessage());
-                }
+        boolean valid = false;
+        while(!valid) {
+            System.out.println(Display.takeAShot());
+            String fireShot = sc.nextLine();
+            try {
+                boolean isFireOnShip = player1.fire(fireShot);
+                System.out.println(player1.getFogWarBoardAsString());
+                System.out.println(Display.isFireOnShip(isFireOnShip));
+                valid = true;
+            } catch (NotInsideTheBoardException e) {
+                System.out.println(e.getMessage());
             }
         }
+    }
+
+    private boolean checkGameState() {
+        boolean isShipSank = player1.isShipSank();
+        if(isShipSank) {
+            boolean isAlive = player1.isAlive();
+            if(isAlive) {
+                System.out.println(Display.sankShip());
+            } else {
+                System.out.println(Display.win());
+            }
+            return isAlive;
+        }
+        return true;
     }
 }
