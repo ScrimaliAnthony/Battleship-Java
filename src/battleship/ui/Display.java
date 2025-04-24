@@ -23,6 +23,10 @@ public class Display {
         return boardBuilder.toString();
     }
 
+    public static String playerCall(int num) {
+        return "Player " + num + ", place your ships on the game field\n";
+    }
+
     public static String placeShip(int i) {
         String[] names = {"Aircraft Carrier (5 cells)", "Battleship (4 cells)", "Submarine (3 cells)", "Cruiser (3 cells)", "Destroyer (2 cells)"};
         return "Enter the coordinates of the " + names[i] + ":";
@@ -36,8 +40,8 @@ public class Display {
         return "Parts: " + parts;
     }
 
-    public static String gameStart() {
-        return "The game starts!\n";
+    public static String gameStart(String playerName) {
+        return playerName + ", it's your turn:\n";
     }
 
     public static String takeAShot() {

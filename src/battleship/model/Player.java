@@ -4,11 +4,13 @@ import battleship.exceptions.*;
 import battleship.ui.Display;
 
 public class Player {
+    private String name;
     private GameBoard gameBoard;
 
     private Ship[] ships = new Ship[5];
 
-    public Player() {
+    public Player(int num) {
+        this.name = "player " + (num + 1);
         createGameBoard();
     }
 
@@ -101,6 +103,10 @@ public class Player {
 
     public String getPartsOfShipAsString(Ship ship) {
         return Display.partsOfShip(ship.getParts());
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     public GameBoard getGameBoard() {
