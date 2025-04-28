@@ -14,7 +14,6 @@ public class Validators {
         checkAlignment(indexes);
 
         for(int index : indexes) {
-            System.out.println(index);
             checkInsideTheBoard(index);
         }
 

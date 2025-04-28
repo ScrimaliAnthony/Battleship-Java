@@ -5,17 +5,18 @@ import battleship.ui.Display;
 
 public class Player {
     private String name;
-    private GameBoard gameBoard;
+    private PlayerGameBoard playerGameBoard;
+    private FogWarGameBoard fogWarGameBoard;
 
     private Ship[] ships = new Ship[5];
 
     public Player(int num) {
         this.name = "player " + (num + 1);
-        createGameBoard();
     }
 
-    private void createGameBoard() {
-        gameBoard = new GameBoard(10, 10);
+    public void createGameBoards() {
+        playerGameBoard = new PlayerGameBoard(10, 10);
+        fogWarGameBoard = new FogWarGameBoard(10, 10);
     }
 
     public void createFleet(String shipPosition, int i)
@@ -30,12 +31,15 @@ public class Player {
     }
 
     public void placeShip(Ship ship) {
-        gameBoard.placeShipOnBoard(ship);
+        playerGameBoard.placeShipOnBoard(ship);
     }
 
-    public boolean fire(String fireShot) throws NotInsideTheBoardException {
-        int[] fireIndex = Fire.shot(fireShot);
-        boolean isFireOnShip = this.gameBoard.isFireOnShip(fireIndex);
+    public int[] fire(String fireShot) throws NotInsideTheBoardException {
+        return Fire.shot(fireShot);
+    }
+
+    public boolean isFireOnShip(int[] fireIndex) {
+        boolean isFireOnShip = this.playerGameBoard.isFireOnShip(fireIndex);
         if(isFireOnShip) {
             checkShip(fireIndex);
         }
@@ -75,12 +79,15 @@ public class Player {
         return false;
     }
 
+    public void fireOnFogWarGameBoard(int[] indexes, boolean isFireOnShip) {
+        this.fogWarGameBoard.placeFireOnBoard(indexes, isFireOnShip);
+    }
+
     public boolean isAlive() {
         int deathCount = 0;
         for(Ship ship : ships) {
             if(!ship.getIsAlive()) {
                 deathCount++;
-                System.out.println(deathCount);
             }
             if(deathCount == 5) {
                 return false;
@@ -90,11 +97,11 @@ public class Player {
     }
 
     public String getBoardAsString() {
-        return Display.board(gameBoard.getRow(), gameBoard.getCol(), gameBoard.getBoard());
+        return Display.board(playerGameBoard.getRow(), playerGameBoard.getCol(), playerGameBoard.getBoard());
     }
 
     public String getFogWarBoardAsString() {
-        return Display.board(gameBoard.getRow(), gameBoard.getCol(), gameBoard.getFogWarBoard());
+        return Display.board(fogWarGameBoard.getRow(), fogWarGameBoard.getCol(), fogWarGameBoard.getBoard());
     }
 
     public String getLengthOfShipAsString(Ship ship) {
@@ -109,8 +116,8 @@ public class Player {
         return this.name;
     }
 
-    public GameBoard getGameBoard() {
-        return gameBoard;
+    public PlayerGameBoard getPlayerGameBoard() {
+        return playerGameBoard;
     }
 
     public Ship getShip(int i) {
@@ -118,14 +125,14 @@ public class Player {
     }
 
     public char[][] getBoard() {
-        return this.gameBoard.getBoard();
+        return this.playerGameBoard.getBoard();
     }
 
     public int getRow() {
-        return this.gameBoard.getRow();
+        return this.playerGameBoard.getRow();
     }
 
     public int getCol() {
-        return this.gameBoard.getCol();
+        return this.playerGameBoard.getCol();
     }
 }
