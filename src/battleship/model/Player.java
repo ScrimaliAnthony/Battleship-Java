@@ -21,7 +21,7 @@ public class Player {
 
     public void createFleet(String shipPosition, int i)
             throws NotAlignedShipException, NotInsideTheBoardException, InvalidShipLengthException,
-            TooCloseToAnotherShipException, ShipOverlapException {
+            TooCloseToAnotherShipException, ShipOverlapException, InvalidInputFormatException {
 
         int[] shipMaxLength = { 5, 4, 3, 3, 2 };
         String[] shipsNames = { "aircraftCarrier", "battleShip", "submarine", "cruiser", "destroyer" };
@@ -34,7 +34,7 @@ public class Player {
         playerGameBoard.placeShipOnBoard(ship);
     }
 
-    public int[] fire(String fireShot) throws NotInsideTheBoardException {
+    public int[] fire(String fireShot) throws NotInsideTheBoardException, InvalidInputFormatException {
         return Fire.shot(fireShot);
     }
 

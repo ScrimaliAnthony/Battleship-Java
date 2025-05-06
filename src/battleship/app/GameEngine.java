@@ -59,7 +59,7 @@ class GameEngine {
                     System.out.println(players[num].getBoardAsString());
                     valid = true;
                 } catch (NotAlignedShipException | NotInsideTheBoardException | InvalidShipLengthException |
-                         TooCloseToAnotherShipException | ShipOverlapException e) {
+                         TooCloseToAnotherShipException | ShipOverlapException | InvalidInputFormatException e) {
                     System.out.println(e.getMessage());
                 }
             }
@@ -81,7 +81,7 @@ class GameEngine {
                 players[num].fireOnFogWarGameBoard(fire, isFireOnShip);
                 System.out.println(Display.isFireOnShip(isFireOnShip));
                 valid = true;
-            } catch (NotInsideTheBoardException e) {
+            } catch (NotInsideTheBoardException | InvalidInputFormatException e) {
                 System.out.println(e.getMessage());
             }
         }

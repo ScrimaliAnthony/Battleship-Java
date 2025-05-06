@@ -11,7 +11,7 @@ public class ShipFactory {
     public static Ship createShip(String shipPosition, int shipMaxLength, String shipName, char[][] gameBoard,
             int boardRow, int boardCol)
             throws NotAlignedShipException, NotInsideTheBoardException, InvalidShipLengthException, ShipOverlapException,
-            TooCloseToAnotherShipException {
+            TooCloseToAnotherShipException, InvalidInputFormatException {
 
         int[] indexes = Converter.shipConvert(shipPosition);
 
