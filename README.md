@@ -4,7 +4,7 @@
     <img src="https://visitor-badge.laobi.icu/badge?page_id=ScrimaliAnthony.Battleship-java" />
 </div>
 
-<img src="./img.png"/>
+<img src="./banner.png"/>
 
 
 
