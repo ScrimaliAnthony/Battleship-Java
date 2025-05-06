@@ -1,9 +1,12 @@
-<div align="right">
-
-![Release](https://img.shields.io/github/v/release/ScrimaliAnthony/Battleship-java) ![Stars](https://img.shields.io/github/stars/ScrimaliAnthony/Battleship-java?style=social) ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=ScrimaliAnthony.Battleship-java)
+<div align=right">
+    <img src="https://img.shields.io/github/v/release/ScrimaliAnthony/Battleship-java" />
+    <img src="https://img.shields.io/github/stars/ScrimaliAnthony/Battleship-java?style=social" />
+    <img src="https://visitor-badge.laobi.icu/badge?page_id=ScrimaliAnthony.Battleship-java" />
 </div>
+<img src="./img.png"/>
 
-<h1 align="center"> 🚢 Battleship Java</h1>
+
+</br>
 
 Bienvenue dans **Battleship Java**, un jeu de bataille navale en ligne de commande pour deux joueurs, développé en Java. Préparez votre flotte, planifiez vos tirs... et que le meilleur stratège l'emporte !
 
