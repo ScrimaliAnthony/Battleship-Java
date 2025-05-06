@@ -17,10 +17,10 @@ Bienvenue dans **Battleship Java**, un jeu de bataille navale en ligne de comman
 
 ## 🎮 Fonctionnalités
 
-* ⚔️ Jeu à 2 joueurs en local, avec alternance de tours
+* ⚔️ Jeu à 2 joueurs en local, en mode tour par tour
 * 🌫 Brouillard de guerre pour masquer la flotte ennemie
 * 🛠 Placement des navires avec détection d'erreurs (chevauchement, bordure, mauvaise longueur...)
-* 💥 Système de tir intelligent avec retour visuel (coulé, touché, manqué)
+* 💥 Tirez sur la grille ennemie et découvrez immédiatement si vous avez touché, manqué ou coulé un navire
 * 📢 Messages d'erreurs clairs grâce à des exceptions personnalisées
 
 ---
@@ -50,8 +50,6 @@ java -jar Battleship.jar
 ```
 
 3. Suivez les instructions à l'écran pour placer votre flotte, passer le tour et attaquer votre adversaire.
-
-💡 **Astuce :** utilisez des majuscules ou minuscules, le jeu accepte les deux !
 
 ---
 
