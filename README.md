@@ -9,9 +9,11 @@
 
 
 ---
+## 🚢 Présentation
 
 Bienvenue dans **Battleship Java**, un jeu de bataille navale en ligne de commande pour deux joueurs, développé en Java. Préparez votre flotte, planifiez vos tirs... et que le meilleur stratège l'emporte !
 
+---
 
 ## 🎮 Fonctionnalités
 
@@ -72,5 +74,3 @@ src/
 javac -d out $(find src -name "*.java")
 jar cfm Battleship.jar manifest.txt -C out .
 ```
-
----
