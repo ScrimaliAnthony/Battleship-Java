@@ -11,7 +11,8 @@
 ---
 ## 🚢 Présentation
 
-Bienvenue dans **Battleship Java**, un jeu de bataille navale en ligne de commande pour deux joueurs, développé en Java. Préparez votre flotte, planifiez vos tirs... et que le meilleur stratège l'emporte !
+Battleship Java est une version en ligne de commande du célèbre jeu de bataille navale, pensée pour deux joueurs.
+Déployez vos navires, affûtez votre stratégie, et tentez de couler la flotte adverse avant qu'elle ne détruise la vôtre !
 
 ---
 
